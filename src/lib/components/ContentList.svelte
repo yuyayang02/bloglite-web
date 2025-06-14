@@ -1,11 +1,12 @@
 <script lang="ts">
     import { type ArticleMateData } from "$lib/types";
+    import type { Snippet } from "svelte";
     import ArticleContainer from "./Article/ArticleContainer.svelte";
     import ArticleHeader from "./Article/ArticleHeader.svelte";
     import ArticleSummary from "./Article/ArticleSummary.svelte";
     import ReadMore from "./Article/ReadMore.svelte";
 
-    const { header, data }: { header?: any; data?: ArticleMateData[] } = $props();
+    const { header, data }: { header?: Snippet; data?: ArticleMateData[] } = $props();
 </script>
 
 {#snippet articleItem(data: ArticleMateData)}

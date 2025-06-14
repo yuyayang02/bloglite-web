@@ -1,33 +1,12 @@
 <script lang="ts">
     import type { ArticleMateData } from "$lib/types";
-    import {
-        categoryURL,
-        omitUndefined,
-        tagURL,
-        timestampToLocalDate,
-    } from "$lib/utils";
+    import { categoryURL, tagURL, timestampToLocalDate } from "$lib/utils";
     import { getContext } from "svelte";
 
-    const {
-        author,
-        category,
-        updated_at,
-        tags,
-        variant = "normal",
-    }: Partial<
-        Pick<ArticleMateData, "author" | "category" | "updated_at" | "tags"> & {
-            variant: "linked" | "normal";
-        }
-    > = $props();
-    const article = {
-        ...getContext<ArticleMateData>("article"),
-        ...omitUndefined({
-            author,
-            category,
-            updated_at,
-            tags,
-        }),
-    };
+    const { variant = "normal" }: Partial<{ variant: "linked" | "normal" }> =
+        $props();
+
+    const article = getContext<ArticleMateData>("article");
 </script>
 
 <div
@@ -43,7 +22,7 @@
     >
     <span class="flex items-center gap-2">
         {#if article.tags && article.tags.length > 0}
-            {#each article.tags as t}
+            {#each article.tags as t (t)}
                 <span>
                     <a href={tagURL(t)}>#{t}</a>
                 </span>

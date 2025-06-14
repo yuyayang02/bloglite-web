@@ -2,9 +2,9 @@
     import type { ArticleContentData } from "$lib/types";
     import { getContext } from "svelte";
 
-    const article = getContext<ArticleContentData>("article");
+    const { content } = getContext<ArticleContentData>("article");
 </script>
 
 <main class="linked">
-    {@html article.content}
+    {@html content}
 </main>
