@@ -1,5 +1,5 @@
 <script lang="ts">
-    import type { ArticleMate } from "$lib/types";
+    import type { ArticleMateData } from "$lib/types";
     import { articleURL, omitUndefined } from "$lib/utils";
     import { getContext } from "svelte";
     import ArticleMateInfo from "./ArticleMateInfo.svelte";
@@ -12,13 +12,13 @@
         title,
     }: Partial<
         Pick<
-            ArticleMate,
+            ArticleMateData,
             "author" | "category" | "updated_at" | "tags" | "title"
         >
     > = $props();
 
     const article = {
-        ...getContext<ArticleMate>("article"),
+        ...getContext<ArticleMateData>("article"),
         ...omitUndefined({
             author,
             category,

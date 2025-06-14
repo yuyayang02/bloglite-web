@@ -1,8 +1,8 @@
 <script lang="ts">
-    import type { ArticleMate } from "$lib/types";
+    import type { ArticleMateData } from "$lib/types";
     import { articleURL } from "$lib/utils";
 
-    const { data }: { data: ArticleMate[] } = $props();
+    const { data }: { data: ArticleMateData[] } = $props();
 </script>
 
 {#if data && data.length > 0}

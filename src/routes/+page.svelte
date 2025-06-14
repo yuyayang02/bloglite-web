@@ -2,7 +2,7 @@
     import { siteConfig } from "$lib/config.js";
     import ContentList from "$lib/components/ContentList.svelte";
     const { data } = $props();
-    const articles = data.articles.data?.items;  
+    const articles = $derived(data.articles.data?.items)
 </script>
 
 <svelte:head>
@@ -10,7 +10,3 @@
 </svelte:head>
 
 <ContentList data={articles} />
-
-{#snippet test()}
-    <p>test</p>
-{/snippet}

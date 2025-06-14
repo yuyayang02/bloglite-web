@@ -1,5 +1,5 @@
 <script lang="ts">
-    import type { ArticleMate } from "$lib/types";
+    import type { ArticleMateData } from "$lib/types";
     import {
         categoryURL,
         omitUndefined,
@@ -15,12 +15,12 @@
         tags,
         variant = "normal",
     }: Partial<
-        Pick<ArticleMate, "author" | "category" | "updated_at" | "tags"> & {
+        Pick<ArticleMateData, "author" | "category" | "updated_at" | "tags"> & {
             variant: "linked" | "normal";
         }
     > = $props();
     const article = {
-        ...getContext<ArticleMate>("article"),
+        ...getContext<ArticleMateData>("article"),
         ...omitUndefined({
             author,
             category,

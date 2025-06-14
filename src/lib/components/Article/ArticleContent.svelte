@@ -1,8 +1,8 @@
 <script lang="ts">
-    import type { ArticleContent } from "$lib/types";
+    import type { ArticleContentData } from "$lib/types";
     import { getContext } from "svelte";
 
-    const article = getContext<ArticleContent>("article");
+    const article = getContext<ArticleContentData>("article");
 </script>
 
 <main class="linked">
