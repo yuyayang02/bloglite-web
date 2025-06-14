@@ -3,13 +3,15 @@
 	import type { Snippet } from "svelte";
 	import { siteConfig } from "$lib/config";
 
-	import Aside from "$lib/components/Aside/Aside.svelte";
+	import Aside from "$lib/components/Sidebar/Sidebar.svelte";
 	import "../app.css";
-	import { asideStore } from "$lib/stores/asideStore";
+	import { useSidebarStore } from "$lib/stores/SidebarStore";
 	import { page } from "$app/state";
 
-	const { children, data }: { children: Snippet; data: LayoutData } = $props();
-	asideStore.set({
+	const { children, data }: { children: Snippet; data: LayoutData } =
+		$props();
+
+	useSidebarStore().set({
 		categories: data.categories.data?.items || [],
 		tags: data.tags.data?.items || [],
 		recentArticles: data.recentArticles.data?.items || [],

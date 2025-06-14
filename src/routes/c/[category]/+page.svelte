@@ -2,13 +2,15 @@
     import { siteConfig } from "$lib/config.js";
     import ContentList from "$lib/components/ContentList.svelte";
     import { page } from "$app/state";
-    import { asideStore } from "$lib/stores/asideStore.js";
+    import { useSidebarStore } from "$lib/stores/SidebarStore.js";
 
     const { data } = $props();
+    const sidebarStore = useSidebarStore();
+
     const articles = $derived(data.articles.data?.items);
 
     const category = $derived(
-        $asideStore.categories.find(
+        $sidebarStore.categories.find(
             (category) => category.id === page.params.category,
         ),
     );

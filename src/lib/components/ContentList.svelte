@@ -1,23 +1,35 @@
 <script lang="ts">
-    import { type ArticleMate } from "$lib/types";
+    import { type ArticleMateData } from "$lib/types";
     import ArticleContainer from "./Article/ArticleContainer.svelte";
     import ArticleHeader from "./Article/ArticleHeader.svelte";
     import ArticleSummary from "./Article/ArticleSummary.svelte";
     import ReadMore from "./Article/ReadMore.svelte";
 
-    let { header, data }: { header?: any; data?: ArticleMate[] } = $props();
-
+    const { header, data }: { header?: any; data?: ArticleMateData[] } = $props();
 </script>
 
-{#snippet article(article: ArticleMate)}
-    <ArticleContainer data={article}>
+{#snippet articleItem(data: ArticleMateData)}
+    <ArticleContainer {data}>
         <ArticleHeader />
         <ArticleSummary />
         <ReadMore />
     </ArticleContainer>
 {/snippet}
 
-{#snippet pagination()}
+<main class="xl:w-3/4 xl:pr-[5%] w-full mb-8">
+    {#if header}
+        {@render header()}
+    {/if}
+    {#if data && data.length > 0}
+        {#each data as item (item.slug)}
+            {@render articleItem(item)}
+        {/each}
+    {:else if data && data.length <= 0}
+        <p class="my-6">没有更多内容了</p>
+    {/if}
+</main>
+
+<!-- {#snippet pagination()}
     <nav
         class="py-4 font-lxgw mx-auto flex w-full justify-center text-[16px] text-center"
     >
@@ -38,17 +50,4 @@
             </li>
         </ul>
     </nav>
-{/snippet}
-
-<main class="xl:w-3/4 xl:pr-[5%] w-full mb-8">
-    {#if header}
-        {@render header()}
-    {/if}
-    {#if data && data.length > 0}
-        {#each data as item, i}
-            {@render article(item)}
-        {/each}
-    {:else if data && data.length <= 0}
-        <p class="my-6">没有更多内容了</p>
-    {/if}
-</main>
+{/snippet} -->

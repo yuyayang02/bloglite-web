@@ -1,5 +1,5 @@
-<script lang="ts" generics="T extends ArticleMate">
-    import type { ArticleMate } from "$lib/types";
+<script lang="ts" generics="T extends ArticleMateData">
+    import type { ArticleMateData } from "$lib/types";
 
     import { setContext } from "svelte";
 

@@ -4,14 +4,14 @@
     import { page } from "$app/state";
 
     const { data } = $props();
-    const articles = $derived(data.articles.data?.items);
+    const article = $derived(data.articles.data?.items)
 </script>
 
 <svelte:head>
     <title>{siteConfig.title} - 个人博客</title>
 </svelte:head>
 
-<ContentList data={articles}>
+<ContentList data={article}>
     {#snippet header()}
         <h1 class="flex flex-col">
             <span class="text-[20px]  text-(--color-fg-muted)">Filter by</span>

@@ -14,10 +14,10 @@ export interface ArticleList {
     count: number
     page: number
     limit: number
-    items: ArticleMate[]
+    items: ArticleMateData[]
 }
 
-export interface ArticleMate {
+export interface ArticleMateData {
     slug: string,
     title: string,
     summary: string,
@@ -28,7 +28,7 @@ export interface ArticleMate {
     created_at: number
 }
 
-export interface ArticleContent extends ArticleMate {
+export interface ArticleContentData extends ArticleMateData {
     content: string,
     version: string
 }
