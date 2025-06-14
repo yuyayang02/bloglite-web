@@ -18,9 +18,3 @@ export function categoryURL(id: string): string {
 export function tagURL(name: string): string {
     return `/t/${name}`
 }
-
-export function omitUndefined<T extends Record<string, any>>(obj: T): Partial<T> {
-    return Object.fromEntries(
-        Object.entries(obj).filter(([_, val]) => val !== undefined)
-    ) as Partial<T>;
-}

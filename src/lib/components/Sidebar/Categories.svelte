@@ -8,7 +8,7 @@
 {#if categories.length > 0}
     <h3 class="select-none text-2xl mb-2.5">分类</h3>
     <ul class="space-y-1 text-inherit ml-6">
-        {#each categories as item}
+        {#each categories as item (item.id)}
             <li
                 class="before:content-['-'] before:-ml-4 before:-mt-[1px] before:absolute"
             >

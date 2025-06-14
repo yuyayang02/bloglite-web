@@ -1,9 +1,9 @@
 <script lang="ts" generics="T extends ArticleMateData">
     import type { ArticleMateData } from "$lib/types";
 
-    import { setContext } from "svelte";
+    import { setContext, type Snippet } from "svelte";
 
-    const { children, data }: { children: any; data: T } = $props();
+    const { children, data }: { children: Snippet; data: T } = $props();
     setContext("article", data);
 </script>
 
