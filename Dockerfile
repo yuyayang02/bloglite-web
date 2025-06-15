@@ -5,10 +5,11 @@ FROM node:18-alpine AS builder
 WORKDIR /app
 
 # 复制 package.json 和 package-lock.json
-COPY package*.json ./
+COPY package.json ./
+COPY package-lock.json ./
 
 # 安装依赖
-RUN npm install
+RUN npm install --no-audit --no-fund --progress=verbose
 
 # 复制项目文件
 COPY . .
@@ -23,10 +24,11 @@ WORKDIR /app
 
 # 从构建阶段复制必要的文件
 COPY --from=builder /app/build ./build
-COPY --from=builder /app/package*.json ./
+COPY package.json ./
+COPY package-lock.json ./
 
 # 安装生产依赖
-RUN npm install --production
+RUN npm install --production --no-audit --no-fund --progress=verbose
 
 # 暴露端口
 EXPOSE 3000
