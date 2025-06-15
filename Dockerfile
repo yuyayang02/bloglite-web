@@ -7,14 +7,18 @@ WORKDIR /app
 # 复制 package.json 和 package-lock.json
 COPY package*.json ./
 
+RUN npm config set registry https://registry.npmmirror.com
+RUN npm install --global pnpm
+RUN pnpm config set registry https://registry.npmmirror.com
+
 # 安装依赖
-RUN npm install
+RUN pnpm i
 
 # 复制项目文件
 COPY . .
 
 # 构建应用
-RUN npm run build
+RUN pnpm build
 
 # 使用更小的基础镜像来运行应用
 FROM node:18-alpine
@@ -25,8 +29,11 @@ WORKDIR /app
 COPY --from=builder /app/build ./build
 COPY --from=builder /app/package*.json ./
 
+RUN npm config set registry https://registry.npmmirror.com
+RUN npm install --global pnpm
+RUN pnpm config set registry https://registry.npmmirror.com
 # 安装生产依赖
-RUN npm install --production
+RUN pnpm i -p
 
 # 暴露端口
 EXPOSE 3000
