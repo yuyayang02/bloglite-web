@@ -8,7 +8,7 @@ WORKDIR /app
 COPY package*.json ./
 
 # 安装依赖
-RUN npm install
+RUN npm install --no-audit --no-fund --progress=verbose
 
 # 复制项目文件
 COPY . .
@@ -26,7 +26,7 @@ COPY --from=builder /app/build ./build
 COPY --from=builder /app/package*.json ./
 
 # 安装生产依赖
-RUN npm install --production
+RUN npm install --production --no-audit --no-fund --progress=verbose
 
 # 暴露端口
 EXPOSE 3000
